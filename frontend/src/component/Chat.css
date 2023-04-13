@@ -1,0 +1,31 @@
+.conversation-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 400px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.message {
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 100%;
+    background-color: #f1f0f0;
+    color: black;
+}
+
+.message.isMe {
+    align-self: flex-start;
+    background-color: #007bff;
+    width: 100%;
+    color: white;
+}
+
+.message.isOther {
+    background-color: darkgreen;
+    width: 100%;
+}
