@@ -1,5 +1,7 @@
 package backend.chat.presentation;
 
+import backend.chat.application.ChatService;
+import backend.chat.dto.ChatReceive;
 import backend.chat.dto.ChatSend;
 import backend.rest_template.application.RestTemplateService;
 import lombok.RequiredArgsConstructor;
@@ -11,15 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ChatController {
 
+    private final ChatService chatService;
     private final RestTemplateService restTemplateService;
 
     @PostMapping("/chat")
-    public String chat(@RequestBody ChatSend answer) {
-        return restTemplateService.sendGptMessage(answer);
+    public ChatReceive chat(@RequestBody ChatSend chatSend) {
+        ChatReceive chatReceive = restTemplateService.sendUserMessage(chatSend);
+        chatService.save(chatSend, chatReceive);
+        return restTemplateService.sendUserMessage(chatSend);
     }
 
-    @PostMapping("/hello")
-    public String gptMessage(@RequestBody ChatSend answer) {
-        return "gpt message";
+    @PostMapping("/ML-server")
+    public ChatReceive gptMessage(@RequestBody ChatSend chatSend) {
+        return ChatReceive.builder()
+                .gptMessage("gpt message")
+                .feedbackMessage("feedback message")
+                .build();
     }
 }

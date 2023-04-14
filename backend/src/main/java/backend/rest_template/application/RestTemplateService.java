@@ -1,5 +1,6 @@
 package backend.rest_template.application;
 
+import backend.chat.dto.ChatReceive;
 import backend.chat.dto.ChatSend;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -15,12 +16,12 @@ public class RestTemplateService {
 
     private final RestTemplate restTemplate;
 
-    public String sendGptMessage(ChatSend chatSend) {
-        String url = "http://localhost:8080/hello";
+    public ChatReceive sendUserMessage(ChatSend chatSend) {
+        String url = "http://localhost:8080/ML-server";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<ChatSend> request = new HttpEntity<>(chatSend, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
+        ResponseEntity<ChatReceive> response = restTemplate.postForEntity(url, request, ChatReceive.class);
         return response.getBody();
     }
 }

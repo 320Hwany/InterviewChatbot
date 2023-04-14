@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChatSend {
 
-    private String gptMessage;
+    private String userMessage;
 
     @Builder
-    public ChatSend(String gptMessage) {
-        this.gptMessage = gptMessage;
+    public ChatSend(String userMessage) {
+        this.userMessage = userMessage;
     }
 }

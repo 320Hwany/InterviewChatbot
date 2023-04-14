@@ -6,21 +6,20 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Chat.css'
 
 function Chat() {
-    const [answer, setAnswer] = useState('');
+    const [userMessage, setUserMessage] = useState('');
     const [conversation, setConversation] = useState([]);
     const conversationContainer = useRef(null);
 
     const saveConversation = (e) => {
         e.preventDefault();
-        const newMessage = { text: answer, isMe: true };
+        const newMessage = { text: userMessage, isMe: true };
         setConversation((prevConversation) => [...prevConversation, newMessage]);
-        setAnswer('');
+        setUserMessage('');
         axios
-            .post('http://localhost:8080/chat', { answer }, {
+            .post('http://localhost:8080/chat', { userMessage }, {
             })
             .then((res) => {
-                console.log(res.data);
-                const newMessage = { text: res.data, isMe: false };
+                const newMessage = { text: res.data.gptMessage, isMe: false };
                 setConversation((prevConversation) => [...prevConversation, newMessage]);
             })
             .catch((err) => {
@@ -32,7 +31,7 @@ function Chat() {
         conversationContainer.current.scrollTop = conversationContainer.current.scrollHeight;
     }, [conversation]);
 
-    const handleKeyDown = (e) => {
+    const handleKeyPress = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             saveConversation(e);
@@ -60,10 +59,10 @@ function Chat() {
                         <Form.Control
                             as="textarea"
                             rows={3}
-                            name="answer"
-                            value={answer}
-                            onChange={(e) => setAnswer(e.target.value)}
-                            onKeyDown={handleKeyDown}
+                            name="userMessage"
+                            value={userMessage}
+                            onChange={(e) => setUserMessage(e.target.value)}
+                            onKeyPress={handleKeyPress}
                             placeholder="Send a message.."
                         />
                     </Form.Group>
