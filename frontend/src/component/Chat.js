@@ -4,6 +4,7 @@ import { Form, Button, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './Chat.css'
+import {Link} from "react-router-dom";
 
 function Chat() {
     const [userMessage, setUserMessage] = useState('');
@@ -70,6 +71,9 @@ function Chat() {
                     <Button variant="primary" type="submit">
                         전송하기
                     </Button>
+                    <Link to="/feedback" className="btn btn-danger mx-3">
+                        면접 종료
+                    </Link>
                 </Form>
             </div>
         </Container>
