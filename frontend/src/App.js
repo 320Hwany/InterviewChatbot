@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Chat from "./component/Chat";
 import Home from "./component/Home";
 import Feedback from "./component/Feedback";
+import FileUpload from "./component/FileUpload";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
             <Route path="/" element={<Home />} />
               <Route path="/chat" element={<Chat />} />
               <Route path="/feedback" element={<Feedback />} />
+              <Route path="/fileUpload" element={<FileUpload />} />
           </Routes>
         </div>
       </Router>

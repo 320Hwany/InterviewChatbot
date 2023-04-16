@@ -15,10 +15,13 @@ public class ChatSetting {
 
     private String career;
 
+    private String company;
+
     @Builder
-    public ChatSetting(String fields, int age, String career) {
+    public ChatSetting(String fields, int age, String career, String company) {
         this.fields = fields;
         this.age = age;
         this.career = career;
+        this.company = company;
     }
 }

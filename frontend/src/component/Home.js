@@ -11,13 +11,17 @@ function Home() {
     const [career, setCareer] = useState('');
     const [company, setCompany] = useState('');
     const navigate = useNavigate();
+    const [responseMessage, setResponseMessage] = useState('');
+
 
     const handleSetting = (e) => {
         e.preventDefault();
         axios
             .post('http://localhost:8080/setting', { fields, age, career, company })
             .then((res) => {
-                navigate('/chat');
+                setResponseMessage(res.data.firstMessage);
+                navigate('/chat', { state: { responseMessage: res.data.firstMessage } });
+                console.log(res.data.firstMessage);
             })
             .catch((err) => {
                 navigate('/chat');
@@ -52,7 +56,7 @@ function Home() {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicCareer">
-                        <Form.Label>경력</Form.Label>
+                        <Form.Label>경력 및 프로젝트 사항</Form.Label>
                         <Form.Control
                             type="career"
                             name="career"
@@ -63,7 +67,7 @@ function Home() {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicCompany">
-                        <Form.Label>회사</Form.Label>
+                        <Form.Label>지원 회사</Form.Label>
                         <Form.Control
                             type="company"
                             name="company"

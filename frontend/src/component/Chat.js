@@ -4,12 +4,22 @@ import { Form, Button, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './Chat.css'
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 function Chat() {
     const [userMessage, setUserMessage] = useState('');
     const [conversation, setConversation] = useState([]);
     const conversationContainer = useRef(null);
+
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.state.responseMessage) {
+            const newConversation = [{ text: location.state.responseMessage, isMe: false },
+                ...conversation];
+            setConversation(newConversation);
+        }
+    }, [location.state.responseMessage]);
 
     const saveConversation = (e) => {
         e.preventDefault();

@@ -1,9 +1,7 @@
 package backend.chat.presentation;
 
 import backend.chat.application.ChatService;
-import backend.chat.dto.ChatFeedback;
-import backend.chat.dto.ChatReceive;
-import backend.chat.dto.ChatSend;
+import backend.chat.dto.*;
 import backend.rest_template.application.RestTemplateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,5 +36,10 @@ public class ChatController {
                 .gptMessage("gpt message")
                 .feedbackMessage("feedback message")
                 .build();
+    }
+
+    @PostMapping("/setting")
+    public ChatFirstMessage firstMessage(@RequestBody ChatSetting chatSetting) {
+        return new ChatFirstMessage("first message");
     }
 }
