@@ -11,8 +11,7 @@ function App() {
       <Router>
         <div>
           <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
               <Route path="/chat" element={<Chat />} />
               <Route path="/feedback" element={<Feedback />} />
               <Route path="/fileUpload" element={<FileUpload />} />

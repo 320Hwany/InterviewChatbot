@@ -25,6 +25,7 @@ public class ChatService {
                 .userMessage(chatSend.getUserMessage())
                 .gptMessage(chatReceive.getGptMessage())
                 .feedbackMessage(chatReceive.getFeedbackMessage())
+                .mixMessage(chatReceive.getMixMessage())
                 .build();
 
         chatRepository.save(chatRecord.toEntity());

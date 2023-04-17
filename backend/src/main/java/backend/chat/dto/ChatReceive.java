@@ -13,9 +13,12 @@ public class ChatReceive {
 
     private String feedbackMessage;
 
+    private String mixMessage;
+
     @Builder
-    public ChatReceive(String gptMessage, String feedbackMessage) {
+    public ChatReceive(String gptMessage, String feedbackMessage, String mixMessage) {
         this.gptMessage = gptMessage;
         this.feedbackMessage = feedbackMessage;
+        this.mixMessage = mixMessage;
     }
 }

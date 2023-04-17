@@ -33,11 +33,13 @@ public class ChatController {
         return ChatReceive.builder()
                 .gptMessage("gpt message")
                 .feedbackMessage("feedback message")
+                .mixMessage("mix message")
                 .build();
     }
 
     @PostMapping("/setting")
-    public ChatFirstMessage firstMessage(@RequestBody ChatSetting chatSetting) {
+    public ChatFirstMessage firstMessage(@RequestPart("chatSetting") ChatSetting chatSetting,
+                                         @RequestParam("image") MultipartFile image) {
         return new ChatFirstMessage("first message");
     }
 

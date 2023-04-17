@@ -16,11 +16,14 @@ public class ChatRecord {
 
     private String feedbackMessage;
 
+    private String mixMessage;
+
     @Builder
-    public ChatRecord(String userMessage, String gptMessage, String feedbackMessage) {
+    public ChatRecord(String userMessage, String gptMessage, String feedbackMessage, String mixMessage) {
         this.userMessage = userMessage;
         this.gptMessage = gptMessage;
         this.feedbackMessage = feedbackMessage;
+        this.mixMessage = mixMessage;
     }
 
     public Chat toEntity() {
@@ -28,6 +31,7 @@ public class ChatRecord {
                 .userMessage(userMessage)
                 .gptMessage(gptMessage)
                 .feedbackMessage(feedbackMessage)
+                .mixMessage(mixMessage)
                 .build();
     }
 }

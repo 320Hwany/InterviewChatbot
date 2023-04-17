@@ -21,10 +21,13 @@ public class Chat {
 
     private String feedbackMessage;
 
+    private String mixMessage;
+
     @Builder
-    public Chat(String userMessage, String gptMessage, String feedbackMessage) {
+    public Chat(String userMessage, String gptMessage, String feedbackMessage, String mixMessage) {
         this.userMessage = userMessage;
         this.gptMessage = gptMessage;
         this.feedbackMessage = feedbackMessage;
+        this.mixMessage = mixMessage;
     }
 }
