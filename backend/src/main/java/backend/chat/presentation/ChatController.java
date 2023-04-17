@@ -4,10 +4,8 @@ import backend.chat.application.ChatService;
 import backend.chat.dto.*;
 import backend.rest_template.application.RestTemplateService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -40,6 +38,11 @@ public class ChatController {
 
     @PostMapping("/setting")
     public ChatFirstMessage firstMessage(@RequestBody ChatSetting chatSetting) {
+        return new ChatFirstMessage("first message");
+    }
+
+    @PostMapping("/withImg")
+    public ChatFirstMessage withImgMessage(@RequestParam(value = "image") MultipartFile image) {
         return new ChatFirstMessage("first message");
     }
 }
