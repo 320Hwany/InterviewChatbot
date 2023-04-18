@@ -15,12 +15,16 @@ public class Chat {
     @Column(name = "chat_id")
     private Long id;
 
+    @Lob
     private String userMessage;
 
+    @Lob
     private String gptMessage;
 
+    @Lob
     private String feedbackMessage;
 
+    @Lob
     private String mixMessage;
 
     @Builder
