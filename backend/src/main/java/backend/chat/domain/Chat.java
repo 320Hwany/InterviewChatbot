@@ -16,6 +16,9 @@ public class Chat {
     private Long id;
 
     @Lob
+    private String gptQuestion;
+
+    @Lob
     private String userMessage;
 
     @Lob
@@ -28,7 +31,9 @@ public class Chat {
     private String mixMessage;
 
     @Builder
-    public Chat(String userMessage, String gptMessage, String feedbackMessage, String mixMessage) {
+    public Chat(String gptQuestion, String userMessage, String gptMessage,
+                String feedbackMessage, String mixMessage) {
+        this.gptQuestion = gptQuestion;
         this.userMessage = userMessage;
         this.gptMessage = gptMessage;
         this.feedbackMessage = feedbackMessage;

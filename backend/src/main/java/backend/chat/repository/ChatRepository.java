@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface ChatRepository extends JpaRepository<Chat, Long> {
 
-    @Query("SELECT new backend.chat.dto.ChatFeedback(c.userMessage, c.gptMessage, c.feedbackMessage, c.mixMessage)" +
+    @Query("SELECT new backend.chat.dto.ChatFeedback(c.gptQuestion, c.userMessage, c.gptMessage, " +
+            "c.feedbackMessage, c.mixMessage)" +
             " FROM Chat c")
     List<ChatFeedback> findAllFeedback();
 }

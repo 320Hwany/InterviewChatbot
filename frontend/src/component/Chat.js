@@ -10,6 +10,7 @@ function Chat() {
     const [userMessage, setUserMessage] = useState('');
     const [conversation, setConversation] = useState([]);
     const conversationContainer = useRef(null);
+    const gptQuestionRef = useRef('');
 
     const location = useLocation();
 
@@ -26,17 +27,22 @@ function Chat() {
         const newMessage = { text: userMessage, isMe: true };
         setConversation((prevConversation) => [...prevConversation, newMessage]);
         setUserMessage('');
+
+        const lastConversation = conversation.slice(-1)[0];
+        const gptQuestion = lastConversation && !lastConversation.isMe ? lastConversation.text : '';
+
         axios
-            .post('http://localhost:8080/chat', { userMessage }, {
-            })
+            .post('http://localhost:8080/chat', { userMessage, gptQuestion }, {})
             .then((res) => {
-                const newMessage = { text: res.data.gptMessage, isMe: false };
+                const newMessage = { text: res.data.gptQuestion, isMe: false };
                 setConversation((prevConversation) => [...prevConversation, newMessage]);
             })
             .catch((err) => {
                 console.log(err);
             });
-    }
+    };
+
+
 
     useEffect(() => {
         conversationContainer.current.scrollTop = conversationContainer.current.scrollHeight;
@@ -88,6 +94,7 @@ function Chat() {
             </div>
         </Container>
     );
+
 }
 
 export default Chat;

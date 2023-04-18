@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChatFeedback {
 
+    private String gptQuestion;
+
     private String userMessage;
 
     private String gptMessage;
@@ -18,7 +20,9 @@ public class ChatFeedback {
     private String mixMessage;
 
     @Builder
-    public ChatFeedback(String userMessage, String gptMessage, String feedbackMessage, String mixMessage) {
+    public ChatFeedback(String gptQuestion, String userMessage, String gptMessage,
+                        String feedbackMessage, String mixMessage) {
+        this.gptQuestion = gptQuestion;
         this.userMessage = userMessage;
         this.gptMessage = gptMessage;
         this.feedbackMessage = feedbackMessage;

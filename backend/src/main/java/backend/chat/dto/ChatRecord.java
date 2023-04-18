@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChatRecord {
 
+    private String gptQuestion;
+
     private String userMessage;
 
     private String gptMessage;
@@ -19,7 +21,9 @@ public class ChatRecord {
     private String mixMessage;
 
     @Builder
-    public ChatRecord(String userMessage, String gptMessage, String feedbackMessage, String mixMessage) {
+    public ChatRecord(String gptQuestion, String userMessage, String gptMessage,
+                      String feedbackMessage, String mixMessage) {
+        this.gptQuestion = gptQuestion;
         this.userMessage = userMessage;
         this.gptMessage = gptMessage;
         this.feedbackMessage = feedbackMessage;
@@ -28,6 +32,7 @@ public class ChatRecord {
 
     public Chat toEntity() {
         return Chat.builder()
+                .gptQuestion(gptQuestion)
                 .userMessage(userMessage)
                 .gptMessage(gptMessage)
                 .feedbackMessage(feedbackMessage)

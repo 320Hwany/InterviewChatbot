@@ -22,6 +22,7 @@ public class ChatService {
     @Transactional
     public void save(ChatSend chatSend, ChatReceive chatReceive) {
         ChatRecord chatRecord = ChatRecord.builder()
+                .gptQuestion(chatSend.getGptQuestion())
                 .userMessage(chatSend.getUserMessage())
                 .gptMessage(chatReceive.getGptMessage())
                 .feedbackMessage(chatReceive.getFeedbackMessage())

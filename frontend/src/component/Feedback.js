@@ -42,8 +42,8 @@ function Feedback() {
             <Table striped bordered hover>
                 <thead>
                 <tr style={{backgroundColor: "#e0e0e0", color: "#444"}}>
-                    <th>User Message</th>
-                    <th>Feedback Message</th>
+                    <th>GPT Question</th>
+                    <th>User answer</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -52,8 +52,8 @@ function Feedback() {
                     <React.Fragment key={userMessage}>
                         {groupedChatFeedbackList[userMessage].map((feedback) => (
                             <tr key={feedback.id}>
+                                <td>{feedback.gptQuestion}</td>
                                 <td>{feedback.userMessage}</td>
-                                <td>{feedback.feedbackMessage}</td>
                                 <td>
                                     <Button variant="primary" onClick={() => handleShow(feedback)}>
                                         Details

@@ -18,9 +18,10 @@ public class ChatController {
 
     @PostMapping("/chat")
     public ChatReceive chat(@RequestBody ChatSend chatSend) {
+
         ChatReceive chatReceive = restTemplateService.sendUserMessage(chatSend);
         chatService.save(chatSend, chatReceive);
-        return restTemplateService.sendUserMessage(chatSend);
+        return chatReceive;
     }
 
     @GetMapping("/feedback")
@@ -31,6 +32,7 @@ public class ChatController {
     @PostMapping("/ML-server")
     public ChatReceive gptMessage(@RequestBody ChatSend chatSend) {
         return ChatReceive.builder()
+                .gptQuestion("next question")
                 .gptMessage("gpt message")
                 .feedbackMessage("feedback message")
                 .mixMessage("mix message")
@@ -40,11 +42,6 @@ public class ChatController {
     @PostMapping("/setting")
     public ChatFirstMessage firstMessage(@RequestPart("chatSetting") ChatSetting chatSetting,
                                          @RequestParam("image") MultipartFile image) {
-        return new ChatFirstMessage("first message");
-    }
-
-    @PostMapping("/withImg")
-    public ChatFirstMessage withImgMessage(@RequestParam(value = "image") MultipartFile image) {
         return new ChatFirstMessage("first message");
     }
 }

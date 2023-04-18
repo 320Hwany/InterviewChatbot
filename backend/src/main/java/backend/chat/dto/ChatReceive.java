@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 public class ChatReceive {
 
     @Lob
+    private String gptQuestion;
+
+    @Lob
     private String gptMessage;
 
     @Lob
@@ -20,7 +23,8 @@ public class ChatReceive {
     private String mixMessage;
 
     @Builder
-    public ChatReceive(String gptMessage, String feedbackMessage, String mixMessage) {
+    public ChatReceive(String gptQuestion, String gptMessage, String feedbackMessage, String mixMessage) {
+        this.gptQuestion = gptQuestion;
         this.gptMessage = gptMessage;
         this.feedbackMessage = feedbackMessage;
         this.mixMessage = mixMessage;
