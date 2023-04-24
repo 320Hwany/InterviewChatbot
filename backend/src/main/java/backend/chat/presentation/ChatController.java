@@ -31,6 +31,7 @@ public class ChatController {
 
     @PostMapping("/ML-server")
     public ChatReceive gptMessage(@RequestBody ChatSend chatSend) {
+        System.out.println(chatSend.getGptQuestion());
         return ChatReceive.builder()
                 .gptQuestion("next question")
                 .gptMessage("gpt message")
@@ -42,6 +43,6 @@ public class ChatController {
     @PostMapping("/setting")
     public ChatFirstMessage firstMessage(@RequestPart("chatSetting") ChatSetting chatSetting,
                                          @RequestParam("image") MultipartFile image) {
-        return new ChatFirstMessage("first message");
+        return new ChatFirstMessage("사용자가 입력한 값에 대한 첫 질문");
     }
 }

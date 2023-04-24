@@ -17,7 +17,7 @@ public class RestTemplateService {
     private final RestTemplate restTemplate;
 
     public ChatReceive sendUserMessage(ChatSend chatSend) {
-        String url = "http://localhost:8080/ML-server";
+        String url = "http://172.30.1.81:8000/ML-server";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<ChatSend> request = new HttpEntity<>(chatSend, headers);

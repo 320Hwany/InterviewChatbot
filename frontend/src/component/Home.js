@@ -44,7 +44,7 @@ function Home() {
         }
 
         axios
-            .post('http://localhost:8080/setting', formData, {
+            .post('http://172.30.1.81:8000/setting', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

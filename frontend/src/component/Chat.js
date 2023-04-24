@@ -32,7 +32,7 @@ function Chat() {
         const gptQuestion = lastConversation && !lastConversation.isMe ? lastConversation.text : '';
 
         axios
-            .post('http://localhost:8080/chat', { userMessage, gptQuestion }, {})
+            .post('http://172.30.1.81:8000/chat', { userMessage, gptQuestion }, {})
             .then((res) => {
                 const newMessage = { text: res.data.gptQuestion, isMe: false };
                 setConversation((prevConversation) => [...prevConversation, newMessage]);
